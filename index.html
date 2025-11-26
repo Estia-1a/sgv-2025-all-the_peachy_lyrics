@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)"> 
-    <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)"> 
-    <title>Chistera</title>
-</head>
-<body>
-    
-    <!-- ========================================================================== -->
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chistera · Connexion</title>
+  <title>Chistera  Connexion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)"> 
+  <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)"> 
   <style>
     :root{
       --bg:#0b0f14;
@@ -36,10 +25,10 @@
     html,body{height:100%}
     body{
       margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 80% -10%, #0ea5e91a, transparent 70%),
-        radial-gradient(1000px 500px at -10% 110%, #16a34a1a, transparent 70%),
-        var(--bg);
+      background-image: url('media/pictures/background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       display:grid; place-items:center; padding:24px;
     }
     .phone{
@@ -105,7 +94,7 @@
           <div class="field">
             <label for="pwd">Mot de passe</label>
             <input id="pwd" name="motdepasse" class="input" type="password" placeholder="Mot de passe" required autocomplete="current-password" />
-            <button type="button" class="toggle-pass" aria-label="Afficher le mot de passe" onclick="togglePassword()">👁️</button>
+            <button type="button" class="toggle-pass" aria-label="Afficher le mot de passe" onclick="togglePassword()"></button>
           </div>
           <button class="btn" type="submit">Valider</button>
         </form>
@@ -116,8 +105,8 @@
           <span class="chip">Anxiété</span>
         </div>
         <p class="legal">
-          En cliquant sur «&nbsp;Valider&nbsp;», vous acceptez les conditions d'utilisation de Chistera.<br />
-          <a href="#">Conditions d'utilisation</a> · <a href="#">Politique de confidentialité</a>
+          En cliquant sur &nbsp;Valider&nbsp;, vous acceptez les conditions d'utilisation de Chistera.<br />
+          <a href="#">Conditions d'utilisation</a>  <a href="#">Politique de confidentialité</a>
         </p>
       </div>
     </div>
@@ -135,50 +124,9 @@
         alert('Renseignez votre identifiant et votre mot de passe.');
         return false;
       }
-      alert('Connexion… (démo)');
+      alert('Connexion (démo)');
       return false;
     }
   </script>
-</body>
-</html>
-
-    <!-- ========================================================================== -->
-
-
-    <!-- ========================================================================== -->
-    <!-- PAGE 2 : Tableau de Bord (Dashboard) -->
-    <!-- Espace réservé pour l'équipe chargée du tableau de bord utilisateur -->
-    <!-- ========================================================================== -->
-
-
-    <!-- ========================================================================== -->
-    <!-- PAGE 3 : Menu -->
-    <!-- Espace réservé pour l'équipe chargée de l'affichage des produits/services -->
-    <!-- ========================================================================== -->
-
-
-    <!-- ========================================================================== -->
-    <!-- PAGE 5 : Détails Produit / Service -->
-    <!-- Espace réservé pour l'équipe chargée de la page de détails -->
-    <!-- ========================================================================== -->
-
-
-    <!-- ========================================================================== -->
-    <!-- PAGE 6 : etc -->
-    <!-- Espace réservé pour l'équipe chargée du panier et de la commande -->
-    <!-- ========================================================================== -->
-
-
-    <!-- ========================================================================== -->
-    <!-- PAGE 7 :etc -->
-    <!-- Espace réservé pour l'équipe chargée des avis clients -->
-    <!-- ========================================================================== -->
-
-
-    <!-- ========================================================================== -->
-    <!-- PAGE 8 : Contact / À Propos -->
-    <!-- Espace réservé pour l'équipe chargée de la page contact et infos -->
-    <!-- ========================================================================== -->
-
 </body>
 </html>
