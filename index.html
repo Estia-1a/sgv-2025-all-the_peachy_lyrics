@@ -25,7 +25,7 @@
     html,body{height:100%}
     body{
       margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
-      background-image: url('media/pictures/background.jpg');
+      background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -43,18 +43,25 @@
     .wrap{ min-height:100%; padding:28px 22px 20px; display:flex; flex-direction:column; align-items:center; gap:22px; }
     .brand{ text-align:center; }
     .logo{ width:56px; height:56px; border-radius:14px; background:conic-gradient(from 210deg, var(--primary), #22c55e); display:grid; place-items:center; color:#fff; font-weight:800; letter-spacing:0.5px; }
+    .logo-img { width: 80px; height: 80px; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; border-radius: 16px; object-fit: cover; }
     .title{ font-size:40px; line-height:1; margin:10px 0 6px; font-weight:800; }
     .subtitle{ font-size:12px; color:var(--muted); max-width:26ch; margin:0 auto; }
     form{ width:100%; max-width:320px; display:flex; flex-direction:column; gap:12px; }
     label{ font-size:12px; color:var(--muted); margin-left:2px; }
     .field{ position:relative; }
     .input{
-      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff; color:var(--text);
+      width:100%; padding:12px 14px; padding-right: 40px; border:1px solid var(--border); border-radius:12px; background:#fff; color:var(--text);
       outline:none; transition:border-color .2s, box-shadow .2s;
     }
     .input::placeholder{ color:#9aa3b2 }
     .input:focus{ border-color:var(--primary); box-shadow:0 0 0 4px var(--focus) inset; }
-    .toggle-pass{ position:absolute; inset:0 8px 0 auto; display:grid; place-items:center; border:0; background:transparent; cursor:pointer; color:var(--muted); }
+    .input-wrapper { position: relative; }
+    .toggle-pass{ position:absolute; right: 0; top: 0; bottom: 0; width: 40px; display:flex; align-items:center; justify-content:center; border:0; background:transparent; cursor:pointer; color:var(--muted); padding: 0; }
+    .hidden { display: none !important; }
+    .switch-auth { font-size: 12px; color: var(--text); text-align: center; margin-top: 16px; }
+    .switch-auth a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .switch-auth a:hover { text-decoration: underline; }
+    select.input { appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%235b6578%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right .7em top 50%; background-size: .65em auto; }
     .btn{
       appearance:none; border:0; background:linear-gradient(180deg, var(--primary), #0284c7);
       color:#fff; font-weight:700; padding:12px 16px; border-radius:12px; cursor:pointer; box-shadow:0 6px 16px #0ea5e977; transition:transform .06s ease;
@@ -66,6 +73,9 @@
     .legal{ text-align:center; font-size:11px; color:var(--muted); max-width:34ch; margin-top:auto; }
     .legal a{ color:var(--primary-ink); text-decoration:none; border-bottom:1px solid #0000; }
     .legal a:hover{ border-bottom-color:currentColor }
+    .social-links { display: flex; gap: 16px; justify-content: center; margin-top: 10px; }
+    .social-icon { width: 24px; height: 24px; fill: var(--muted); transition: fill 0.2s; }
+    .social-icon:hover { fill: var(--primary); }
     @media (prefers-color-scheme: dark){
       .screen{ background:linear-gradient(#0b1220, #0d1424) }
       .title, .tagline{ color:#e5e7eb }
@@ -73,49 +83,147 @@
       .input{ background:#0f172a; border-color:#1f2937; color:#e5e7eb }
       .input::placeholder{ color:#8fa0b4 }
       .chip{ background:#0f172a; border-color:#1f2937; color:#9db0c6 }
+      .social-icon { fill: #9db0c6; }
     }
   </style>
 </head>
 <body>
+    <!-- ========================================================================== -->
+    <!-- PAGE 1 : Page d'Accueil (Landing Page) -->
+    <!-- Espace réservé pour l'équipe chargée de la page d'accueil -->
+    <!-- ========================================================================== -->
+
+
+    <!-- ========================================================================== -->
+    <!-- PAGE 2 : Page de Connexion / Inscription (Login/Register) -->
+    <!-- Espace réservé pour l'équipe chargée de l'authentification -->
+    <!-- ========================================================================== -->
   <main class="phone" role="img" aria-label="Maquette de téléphone">
     <div class="notch" aria-hidden="true"></div>
     <div class="screen">
       <div class="wrap">
         <div class="brand" aria-labelledby="title">
-          <div class="logo" aria-hidden="true">CH</div>
+          <img src="Logo.png" alt="Logo Chistera" class="logo-img" />
           <h1 id="title" class="title">Bienvenue&nbsp;!</h1>
           <p class="subtitle">Ongi etorri sur Chistera, votre équilibre, notre priorité.</p>
         </div>
-        <form action="#" method="post" novalidate onsubmit="return handleSubmit(event)">
-          <div class="field">
-            <label for="id">Identifiant</label>
-            <input id="id" name="identifiant" class="input" type="text" placeholder="Identifiant" required autocomplete="username" />
+        <div id="login-view">
+          <form action="#" method="post" novalidate onsubmit="return handleSubmit(event)">
+            <div class="field">
+              <label for="id">Identifiant</label>
+              <input id="id" name="identifiant" class="input" type="text" placeholder="Identifiant" required autocomplete="username" />
+            </div>
+            <div class="field">
+              <label for="pwd">Mot de passe</label>
+              <div class="input-wrapper">
+                <input id="pwd" name="motdepasse" class="input" type="password" placeholder="Mot de passe" required autocomplete="current-password" />
+                <button type="button" class="toggle-pass" aria-label="Afficher le mot de passe" onclick="togglePassword('pwd')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <button class="btn" type="submit">Valider</button>
+          </form>
+          <div class="switch-auth">
+            Nouveau sur la plateforme ? <a href="#" onclick="toggleAuth(event)">Créer un compte !</a>
           </div>
-          <div class="field">
-            <label for="pwd">Mot de passe</label>
-            <input id="pwd" name="motdepasse" class="input" type="password" placeholder="Mot de passe" required autocomplete="current-password" />
-            <button type="button" class="toggle-pass" aria-label="Afficher le mot de passe" onclick="togglePassword()"></button>
-          </div>
-          <button class="btn" type="submit">Valider</button>
-        </form>
-        <p class="tagline">Prenez soin de vous, simplement, naturellement.</p>
-        <div class="chips" aria-label="Suivi proposé">
-          <span class="chip" aria-hidden="false">Sommeil</span>
-          <span class="chip">Alimentation</span>
-          <span class="chip">Anxiété</span>
         </div>
+
+        <div id="register-view" class="hidden">
+          <form action="#" method="post" novalidate onsubmit="return handleRegister(event)">
+            <div class="field">
+              <label for="reg-id">Identifiant</label>
+              <input id="reg-id" name="identifiant" class="input" type="text" placeholder="Choisissez un identifiant" required autocomplete="username" />
+            </div>
+            <div class="field">
+              <label for="reg-pwd">Mot de passe</label>
+              <div class="input-wrapper">
+                <input id="reg-pwd" name="motdepasse" class="input" type="password" placeholder="Créez un mot de passe" required autocomplete="new-password" />
+                <button type="button" class="toggle-pass" aria-label="Afficher le mot de passe" onclick="togglePassword('reg-pwd')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="dob">Date de naissance</label>
+              <input id="dob" name="dob" class="input" type="date" required />
+            </div>
+            <div class="field">
+              <label for="sex">Sexe</label>
+              <select id="sex" name="sex" class="input select">
+                <option value="" disabled selected>Sélectionner</option>
+                <option value="F">Femme</option>
+                <option value="H">Homme</option>
+                <option value="O">Autre</option>
+              </select>
+            </div>
+            <button class="btn" type="submit">S'inscrire</button>
+          </form>
+          <div class="switch-auth">
+            Déjà un compte ? <a href="#" onclick="toggleAuth(event)">Se connecter</a>
+          </div>
+        </div>
+        <p class="tagline">Prenez soin de vous, simplement, naturellement.</p>
+        
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+          <a href="https://snapchat.com" target="_blank" aria-label="Snapchat">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/>
+            </svg>
+          </a>
+        </div>
+
         <p class="legal">
           En cliquant sur &nbsp;Valider&nbsp;, vous acceptez les conditions d'utilisation de Chistera.<br />
-          <a href="#">Conditions d'utilisation</a>  <a href="#">Politique de confidentialité</a>
+          <a href="conditions.html">Conditions d'utilisation</a>  <a href="privacy.html">Politique de confidentialité</a>
         </p>
       </div>
     </div>
   </main>
   <script>
-    function togglePassword(){
-      const input = document.getElementById('pwd');
+    function togglePassword(fieldId){
+      const input = document.getElementById(fieldId);
       input.type = input.type === 'password' ? 'text' : 'password';
     }
+
+    function toggleAuth(e) {
+      e.preventDefault();
+      const loginView = document.getElementById('login-view');
+      const registerView = document.getElementById('register-view');
+      const title = document.getElementById('title');
+      
+      if (loginView.classList.contains('hidden')) {
+        loginView.classList.remove('hidden');
+        registerView.classList.add('hidden');
+        title.textContent = 'Bienvenue\u00A0!';
+      } else {
+        loginView.classList.add('hidden');
+        registerView.classList.remove('hidden');
+        title.textContent = 'Inscription';
+      }
+    }
+
     function handleSubmit(e){
       e.preventDefault();
       const id = document.getElementById('id');
@@ -127,6 +235,56 @@
       alert('Connexion (démo)');
       return false;
     }
+
+    function handleRegister(e){
+      e.preventDefault();
+      const id = document.getElementById('reg-id');
+      const pwd = document.getElementById('reg-pwd');
+      const dob = document.getElementById('dob');
+      const sex = document.getElementById('sex');
+
+      if(!id.value.trim() || !pwd.value.trim() || !dob.value || !sex.value){
+        alert('Veuillez remplir tous les champs.');
+        return false;
+      }
+      alert('Inscription réussie (démo)');
+      // Ici, on pourrait rediriger ou connecter l'utilisateur
+      return false;
+    }
   </script>
+    <!-- ========================================================================== -->
+    <!-- PAGE 3 : Tableau de Bord (Dashboard) -->
+    <!-- Espace réservé pour l'équipe chargée du tableau de bord utilisateur -->
+    <!-- ========================================================================== -->
+
+
+    <!-- ========================================================================== -->
+    <!-- PAGE 4 : Catalogue / Menu -->
+    <!-- Espace réservé pour l'équipe chargée de l'affichage des produits/services -->
+    <!-- ========================================================================== -->
+
+
+    <!-- ========================================================================== -->
+    <!-- PAGE 5 : Détails Produit / Service -->
+    <!-- Espace réservé pour l'équipe chargée de la page de détails -->
+    <!-- ========================================================================== -->
+
+
+    <!-- ========================================================================== -->
+    <!-- PAGE 6 : Panier / Commande -->
+    <!-- Espace réservé pour l'équipe chargée du panier et de la commande -->
+    <!-- ========================================================================== -->
+
+
+    <!-- ========================================================================== -->
+    <!-- PAGE 7 : Avis / Témoignages -->
+    <!-- Espace réservé pour l'équipe chargée des avis clients -->
+    <!-- ========================================================================== -->
+
+
+    <!-- ========================================================================== -->
+    <!-- PAGE 8 : Contact / À Propos -->
+    <!-- Espace réservé pour l'équipe chargée de la page contact et infos -->
+    <!-- ========================================================================== -->
 </body>
 </html>
