@@ -11,8 +11,137 @@
 <body>
     
     <!-- ========================================================================== -->
-    <!-- PAGE 1 : Page de Connexion / Inscription (Login/Register) -->
-    <!-- Espace réservé pour l'équipe chargée de l'authentification -->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chistera · Connexion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#5b6578;
+      --primary:#0ea5e9;
+      --primary-ink:#0b4660;
+      --focus:#94d5f5;
+      --border:#e6e8ee;
+      --success:#16a34a;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, #0ea5e91a, transparent 70%),
+        radial-gradient(1000px 500px at -10% 110%, #16a34a1a, transparent 70%),
+        var(--bg);
+      display:grid; place-items:center; padding:24px;
+    }
+    .phone{
+      width:min(420px, 92vw); aspect-ratio:9/19.5; border:12px solid #12161c; border-radius:38px; background:#0a0e13; box-shadow:0 10px 40px #0008;
+      padding:16px; position:relative;
+    }
+    .notch{ position:absolute; inset:8px 50% auto; transform:translateX(-50%); width:40%; height:14px; background:#0a0e13; border-radius:10px; box-shadow:inset 0 -1px 0 #000; }
+    .screen{
+      position:absolute; inset:16px; background:linear-gradient(#f6f8fb, #eef2f7); border-radius:26px; overflow:auto; scrollbar-width:none; -ms-overflow-style:none;
+    }
+    .screen::-webkit-scrollbar{ display:none }
+    .wrap{ min-height:100%; padding:28px 22px 20px; display:flex; flex-direction:column; align-items:center; gap:22px; }
+    .brand{ text-align:center; }
+    .logo{ width:56px; height:56px; border-radius:14px; background:conic-gradient(from 210deg, var(--primary), #22c55e); display:grid; place-items:center; color:#fff; font-weight:800; letter-spacing:0.5px; }
+    .title{ font-size:40px; line-height:1; margin:10px 0 6px; font-weight:800; }
+    .subtitle{ font-size:12px; color:var(--muted); max-width:26ch; margin:0 auto; }
+    form{ width:100%; max-width:320px; display:flex; flex-direction:column; gap:12px; }
+    label{ font-size:12px; color:var(--muted); margin-left:2px; }
+    .field{ position:relative; }
+    .input{
+      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff; color:var(--text);
+      outline:none; transition:border-color .2s, box-shadow .2s;
+    }
+    .input::placeholder{ color:#9aa3b2 }
+    .input:focus{ border-color:var(--primary); box-shadow:0 0 0 4px var(--focus) inset; }
+    .toggle-pass{ position:absolute; inset:0 8px 0 auto; display:grid; place-items:center; border:0; background:transparent; cursor:pointer; color:var(--muted); }
+    .btn{
+      appearance:none; border:0; background:linear-gradient(180deg, var(--primary), #0284c7);
+      color:#fff; font-weight:700; padding:12px 16px; border-radius:12px; cursor:pointer; box-shadow:0 6px 16px #0ea5e977; transition:transform .06s ease;
+    }
+    .btn:active{ transform:translateY(1px) }
+    .chips{ display:flex; gap:8px; justify-content:center; margin-top:2px; }
+    .chip{ padding:6px 10px; border:1px dashed var(--border); border-radius:10px; font-size:11px; color:var(--muted); background:#fff; }
+    .tagline{ text-align:center; color:#374151; font-size:13px; max-width:26ch; }
+    .legal{ text-align:center; font-size:11px; color:var(--muted); max-width:34ch; margin-top:auto; }
+    .legal a{ color:var(--primary-ink); text-decoration:none; border-bottom:1px solid #0000; }
+    .legal a:hover{ border-bottom-color:currentColor }
+    @media (prefers-color-scheme: dark){
+      .screen{ background:linear-gradient(#0b1220, #0d1424) }
+      .title, .tagline{ color:#e5e7eb }
+      .subtitle, .legal{ color:#a3adc2 }
+      .input{ background:#0f172a; border-color:#1f2937; color:#e5e7eb }
+      .input::placeholder{ color:#8fa0b4 }
+      .chip{ background:#0f172a; border-color:#1f2937; color:#9db0c6 }
+    }
+  </style>
+</head>
+<body>
+  <main class="phone" role="img" aria-label="Maquette de téléphone">
+    <div class="notch" aria-hidden="true"></div>
+    <div class="screen">
+      <div class="wrap">
+        <div class="brand" aria-labelledby="title">
+          <div class="logo" aria-hidden="true">CH</div>
+          <h1 id="title" class="title">Bienvenue&nbsp;!</h1>
+          <p class="subtitle">Ongi etorri sur Chistera, votre équilibre, notre priorité.</p>
+        </div>
+        <form action="#" method="post" novalidate onsubmit="return handleSubmit(event)">
+          <div class="field">
+            <label for="id">Identifiant</label>
+            <input id="id" name="identifiant" class="input" type="text" placeholder="Identifiant" required autocomplete="username" />
+          </div>
+          <div class="field">
+            <label for="pwd">Mot de passe</label>
+            <input id="pwd" name="motdepasse" class="input" type="password" placeholder="Mot de passe" required autocomplete="current-password" />
+            <button type="button" class="toggle-pass" aria-label="Afficher le mot de passe" onclick="togglePassword()">👁️</button>
+          </div>
+          <button class="btn" type="submit">Valider</button>
+        </form>
+        <p class="tagline">Prenez soin de vous, simplement, naturellement.</p>
+        <div class="chips" aria-label="Suivi proposé">
+          <span class="chip" aria-hidden="false">Sommeil</span>
+          <span class="chip">Alimentation</span>
+          <span class="chip">Anxiété</span>
+        </div>
+        <p class="legal">
+          En cliquant sur «&nbsp;Valider&nbsp;», vous acceptez les conditions d'utilisation de Chistera.<br />
+          <a href="#">Conditions d'utilisation</a> · <a href="#">Politique de confidentialité</a>
+        </p>
+      </div>
+    </div>
+  </main>
+  <script>
+    function togglePassword(){
+      const input = document.getElementById('pwd');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+    function handleSubmit(e){
+      e.preventDefault();
+      const id = document.getElementById('id');
+      const pwd = document.getElementById('pwd');
+      if(!id.value.trim() || !pwd.value.trim()){
+        alert('Renseignez votre identifiant et votre mot de passe.');
+        return false;
+      }
+      alert('Connexion… (démo)');
+      return false;
+    }
+  </script>
+</body>
+</html>
+
     <!-- ========================================================================== -->
 
 
