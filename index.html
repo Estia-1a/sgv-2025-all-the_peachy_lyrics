@@ -85,6 +85,98 @@
       .chip{ background:#0f172a; border-color:#1f2937; color:#9db0c6 }
       .social-icon { fill: #9db0c6; }
     }
+    
+    /* Styles pour la Page 1 (Accueil/Dashboard) */
+    .home-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .home-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 0 4px 0;
+      color: var(--text);
+    }
+    .home-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+      max-width: 200px;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text);
+    }
+    .menu-panel {
+      position: absolute;
+      top: 60px;
+      right: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 150px;
+      z-index: 10;
+    }
+    
+    /* Force le fond blanc pour la page d'accueil */
+    #view-home {
+      background-color: #ffffff;
+      min-height: 100%;
+      color: #0f172a;
+    }
+
+    /* Adaptation PC pour la page d'accueil (Plein écran sans cadre téléphone) */
+    @media (min-width: 768px) {
+      body.is-home-view {
+        padding: 0;
+        display: block; /* Désactive le centrage grid du body */
+        overflow-y: auto; /* Autorise le scroll sur le body */
+      }
+      body.is-home-view .phone {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        aspect-ratio: auto;
+        background: transparent;
+      }
+      body.is-home-view .notch {
+        display: none;
+      }
+      body.is-home-view .screen {
+        position: relative;
+        inset: 0;
+        border-radius: 0;
+        height: auto;
+        min-height: 100vh;
+        background: #fff;
+        overflow: visible;
+      }
+      body.is-home-view .home-header {
+        padding: 20px 40px;
+        max-width: 1200px;
+        margin: 0 auto 20px;
+      }
+      body.is-home-view #view-home {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      body.is-home-view .menu-panel {
+        right: 40px;
+        top: 70px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -101,7 +193,7 @@
   <main class="phone" role="img" aria-label="Maquette de téléphone">
     <div class="notch" aria-hidden="true"></div>
     <div class="screen">
-      <div class="wrap">
+      <div id="view-auth" class="wrap">
         <div class="brand" aria-labelledby="title">
           <img src="Logo.png" alt="Logo Chistera" class="logo-img" />
           <h1 id="title" class="title">Bienvenue&nbsp;!</h1>
@@ -199,6 +291,26 @@
           <a href="conditions.html">Conditions d'utilisation</a>  <a href="privacy.html">Politique de confidentialité</a>
         </p>
       </div>
+
+      <!-- PAGE 1 : Accueil -->
+      <div id="view-home" class="wrap hidden">
+        <header class="home-header">
+          <div>
+            <h1 class="home-title">Bonjour, X !</h1>
+            <p class="home-subtitle">Prenez soin de vous simplement, naturellement</p>
+          </div>
+          <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </header>
+        <div id="menu-panel" class="menu-panel hidden">
+          <p style="font-size:12px; color:var(--muted); margin:0;">Menu vide pour l'instant</p>
+        </div>
+      </div>
     </div>
   </main>
   <script>
@@ -224,31 +336,28 @@
       }
     }
 
+    function toggleMenu() {
+      const menu = document.getElementById('menu-panel');
+      menu.classList.toggle('hidden');
+    }
+
+    function showHome() {
+      document.getElementById('view-auth').classList.add('hidden');
+      document.getElementById('view-home').classList.remove('hidden');
+      document.body.classList.add('is-home-view'); // Active le mode plein écran sur PC
+    }
+
     function handleSubmit(e){
       e.preventDefault();
-      const id = document.getElementById('id');
-      const pwd = document.getElementById('pwd');
-      if(!id.value.trim() || !pwd.value.trim()){
-        alert('Renseignez votre identifiant et votre mot de passe.');
-        return false;
-      }
-      alert('Connexion (démo)');
+      // Redirection directe vers l'accueil, peu importe la saisie
+      showHome();
       return false;
     }
 
     function handleRegister(e){
       e.preventDefault();
-      const id = document.getElementById('reg-id');
-      const pwd = document.getElementById('reg-pwd');
-      const dob = document.getElementById('dob');
-      const sex = document.getElementById('sex');
-
-      if(!id.value.trim() || !pwd.value.trim() || !dob.value || !sex.value){
-        alert('Veuillez remplir tous les champs.');
-        return false;
-      }
-      alert('Inscription réussie (démo)');
-      // Ici, on pourrait rediriger ou connecter l'utilisateur
+      // Redirection directe vers l'accueil, peu importe la saisie
+      showHome();
       return false;
     }
   </script>
