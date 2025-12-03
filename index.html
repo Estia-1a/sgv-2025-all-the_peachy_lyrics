@@ -177,6 +177,77 @@
         top: 70px;
       }
     }
+
+    /* Styles pour la Page Conseils (Carousel + Dropdown) */
+    .advice-title {
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin: 10px 0 20px;
+    }
+    .carousel-container {
+      width: 100%;
+      margin-bottom: 30px;
+      perspective: 1000px; /* Pour un effet 3D éventuel */
+    }
+    .carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 10px 4px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel-item {
+      flex: 0 0 140px;
+      height: 140px;
+      background-color: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      scroll-snap-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .dropdown-wrapper {
+      background-color: #e5e7eb; /* Gris clair comme sur le croquis */
+      border-radius: 8px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      position: relative;
+    }
+    .dropdown-icon-left {
+      margin-right: 12px;
+      color: #374151;
+    }
+    .dropdown-select {
+      appearance: none;
+      background: transparent;
+      border: none;
+      width: 100%;
+      height: 100%;
+      font-family: inherit;
+      font-size: 14px;
+      color: #1f2937;
+      outline: none;
+      cursor: pointer;
+    }
+    .dropdown-icon-right {
+      position: absolute;
+      right: 12px;
+      pointer-events: none;
+      color: #374151;
+    }
   </style>
 </head>
 <body>
@@ -308,7 +379,46 @@
           </button>
         </header>
         <div id="menu-panel" class="menu-panel hidden">
-          <p style="font-size:12px; color:var(--muted); margin:0;">Menu vide pour l'instant</p>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li style="margin-bottom:8px;"><a href="#" onclick="showAdvice(); toggleMenu(); return false;" style="text-decoration:none; color:var(--text); font-size:14px;">Conseils personnalisés</a></li>
+            <li><a href="#" style="text-decoration:none; color:var(--muted); font-size:14px;">Autre (vide)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PAGE 3 : Conseils Personnalisés -->
+      <div id="view-advice" class="wrap hidden" style="background:#fff;">
+        <div style="width:100%; display:flex; justify-content:flex-start;">
+           <button onclick="showHome()" style="background:none; border:none; cursor:pointer; padding:0;">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+           </button>
+        </div>
+        
+        <h2 class="advice-title">Conseils personnalisés</h2>
+        
+        <div class="carousel-container">
+          <div class="carousel">
+            <!-- Images placeholders (carrés) -->
+            <div class="carousel-item"><img src="https://images.unsplash.com/photo-1544367563-12123d8965cd?auto=format&fit=crop&w=300&q=80" alt="Conseil 1"></div>
+            <div class="carousel-item"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=300&q=80" alt="Conseil 2"></div>
+            <div class="carousel-item"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=300&q=80" alt="Conseil 3"></div>
+            <div class="carousel-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=300&q=80" alt="Conseil 4"></div>
+          </div>
+        </div>
+
+        <div class="dropdown-wrapper">
+          <div class="dropdown-icon-left">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </div>
+          <select class="dropdown-select">
+            <option value="" disabled selected>Sujet</option>
+            <option value="sommeil">Sommeil</option>
+            <option value="nutrition">Nutrition</option>
+            <option value="sport">Sport</option>
+          </select>
+          <div class="dropdown-icon-right">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+          </div>
         </div>
       </div>
     </div>
@@ -343,8 +453,15 @@
 
     function showHome() {
       document.getElementById('view-auth').classList.add('hidden');
+      document.getElementById('view-advice').classList.add('hidden');
       document.getElementById('view-home').classList.remove('hidden');
       document.body.classList.add('is-home-view'); // Active le mode plein écran sur PC
+    }
+
+    function showAdvice() {
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-advice').classList.remove('hidden');
+      document.body.classList.remove('is-home-view'); // Retour au mode téléphone pour cette page
     }
 
     function handleSubmit(e){
