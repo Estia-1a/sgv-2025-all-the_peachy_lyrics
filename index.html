@@ -176,6 +176,21 @@
         right: 40px;
         top: 70px;
       }
+      
+      /* Styles spécifiques PC pour la page Conseils */
+      body.is-home-view #view-advice {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+      }
+      body.is-home-view .carousel-item {
+        flex: 0 0 300px;
+        height: 300px;
+      }
+      body.is-home-view .dropdown-wrapper {
+        max-width: 400px;
+        margin: 40px auto 0;
+      }
     }
 
     /* Styles pour la Page Conseils (Carousel + Dropdown) */
@@ -461,7 +476,7 @@
     function showAdvice() {
       document.getElementById('view-home').classList.add('hidden');
       document.getElementById('view-advice').classList.remove('hidden');
-      document.body.classList.remove('is-home-view'); // Retour au mode téléphone pour cette page
+      document.body.classList.add('is-home-view'); // Reste en plein écran sur PC
     }
 
     function handleSubmit(e){
