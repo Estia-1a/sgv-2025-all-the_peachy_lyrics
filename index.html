@@ -263,6 +263,220 @@
       pointer-events: none;
       color: #374151;
     }
+
+    /* Styles pour les graphiques */
+    .stats-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .stat-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .chart-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 200px;
+    }
+
+    /* Graphique en barres */
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 16px;
+      height: 200px;
+      width: 100%;
+    }
+
+    .bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bar-value {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .bar-fill {
+      width: 32px;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, #0ea5e9, #0284c7);
+      transition: all 0.3s ease;
+    }
+
+    .bar-fill:hover {
+      opacity: 0.8;
+    }
+
+    .bar-fill.alt {
+      background: linear-gradient(180deg, #94d5f5, #0ea5e9);
+    }
+
+    .bar-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Graphique camembert */
+    .pie-chart {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: conic-gradient(#94d5f5 0deg 216deg, #0ea5e9 216deg 360deg);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .pie-chart::after {
+      content: '';
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .pie-legend {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+
+    .trend-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .trend-item {
+      background: #f3f4f6;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .trend-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .trend-value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .trend-unit {
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: 2px;
+    }
+
+    .composition-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .composition-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .composition-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .composition-value {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .color-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    @media (min-width: 768px) {
+      .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .trend-section {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 0;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .stat-card {
+        background: #0f172a;
+        border-color: #1f2937;
+      }
+
+      .trend-item {
+        background: #1f2937;
+      }
+
+      .stat-card-title, .composition-label {
+        color: #e5e7eb;
+      }
+
+      .legend-item, .trend-label, .composition-value {
+        color: #a3adc2;
+      }
+    }
   </style>
 </head>
 <body>
@@ -398,6 +612,97 @@
             <li style="margin-bottom:8px;"><a href="#" onclick="showAdvice(); toggleMenu(); return false;" style="text-decoration:none; color:var(--text); font-size:14px;">Conseils personnalisés</a></li>
             <li><a href="#" style="text-decoration:none; color:var(--muted); font-size:14px;">Autre (vide)</a></li>
           </ul>
+        </div>
+
+        <!-- Graphiques et statistiques -->
+        <div class="stats-container">
+          <!-- Carte 1: Votre Tendance -->
+          <div class="stat-card">
+            <h3 class="stat-card-title">Votre tendance</h3>
+            <div class="trend-section">
+              <div class="trend-item">
+                <div class="trend-label">Poids</div>
+                <div style="font-size:24px; font-weight:800; color:var(--text);">75<span class="trend-unit">kg</span></div>
+              </div>
+              <div class="trend-item">
+                <div class="trend-label">IMC</div>
+                <div style="font-size:24px; font-weight:800; color:var(--text);">24.9<span class="trend-unit"></span></div>
+              </div>
+            </div>
+            <div class="chart-wrapper">
+              <div class="bar-chart">
+                <div class="bar">
+                  <div class="bar-value">72</div>
+                  <div class="bar-fill" style="height: 120px;"></div>
+                  <div class="bar-label">Sem 1</div>
+                </div>
+                <div class="bar">
+                  <div class="bar-value">74</div>
+                  <div class="bar-fill alt" style="height: 140px;"></div>
+                  <div class="bar-label">Sem 2</div>
+                </div>
+                <div class="bar">
+                  <div class="bar-value">75</div>
+                  <div class="bar-fill" style="height: 150px;"></div>
+                  <div class="bar-label">Sem 3</div>
+                </div>
+                <div class="bar">
+                  <div class="bar-value">75</div>
+                  <div class="bar-fill alt" style="height: 150px;"></div>
+                  <div class="bar-label">Sem 4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte 2: Composition Corporelle (Camembert) -->
+          <div class="stat-card">
+            <h3 class="stat-card-title">Composition corporelle</h3>
+            <div class="chart-wrapper">
+              <div style="flex-direction: column; display: flex; align-items: center; width: 100%;">
+                <div class="pie-chart"></div>
+                <div class="pie-legend">
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: #94d5f5;"></div>
+                    <span>Sommeil réparateur</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color" style="background: #0ea5e9;"></div>
+                    <span>Sommeil</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carte 3: Progression Générale -->
+          <div class="stat-card">
+            <h3 class="stat-card-title">Progression générale</h3>
+            <div class="chart-wrapper">
+              <div class="bar-chart">
+                <div class="bar">
+                  <div class="bar-value">65</div>
+                  <div class="bar-fill" style="height: 100px;"></div>
+                  <div class="bar-label">Mois 1</div>
+                </div>
+                <div class="bar">
+                  <div class="bar-value">70</div>
+                  <div class="bar-fill alt" style="height: 130px;"></div>
+                  <div class="bar-label">Mois 2</div>
+                </div>
+                <div class="bar">
+                  <div class="bar-value">75</div>
+                  <div class="bar-fill" style="height: 160px;"></div>
+                  <div class="bar-label">Mois 3</div>
+                </div>
+                <div class="bar">
+                  <div class="bar-value">78</div>
+                  <div class="bar-fill alt" style="height: 180px;"></div>
+                  <div class="bar-label">Mois 4</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
