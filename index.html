@@ -596,7 +596,7 @@
       <div id="view-home" class="wrap hidden">
         <header class="home-header">
           <div>
-            <h1 class="home-title">Bonjour, X !</h1>
+            <h1 class="home-title">Bonjour, <span id="user-display">X</span> !</h1>
             <p class="home-subtitle">Prenez soin de vous simplement, naturellement</p>
           </div>
           <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
@@ -786,14 +786,22 @@
 
     function handleSubmit(e){
       e.preventDefault();
-      // Redirection directe vers l'accueil, peu importe la saisie
+      // Récupérer l'identifiant et l'afficher
+      const identifiant = document.getElementById('id').value;
+      if (identifiant) {
+        document.getElementById('user-display').textContent = identifiant;
+      }
       showHome();
       return false;
     }
 
     function handleRegister(e){
       e.preventDefault();
-      // Redirection directe vers l'accueil, peu importe la saisie
+      // Récupérer l'identifiant et l'afficher
+      const identifiant = document.getElementById('reg-id').value;
+      if (identifiant) {
+        document.getElementById('user-display').textContent = identifiant;
+      }
       showHome();
       return false;
     }
