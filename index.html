@@ -455,6 +455,109 @@
       border-radius: 50%;
     }
 
+    /* Section Mes petits plats */
+    .meals-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding: 0;
+      width: 100%;
+    }
+
+    .meals-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .meals-arrow {
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    .meals-carousel {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 12px 0;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      margin-bottom: 20px;
+    }
+
+    .meals-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .meals-item {
+      flex: 0 0 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      scroll-snap-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      padding: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .meals-composition {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .meals-pie-chart {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: conic-gradient(#94d5f5 0deg 108deg, #6366f1 108deg 216deg, #0ea5e9 216deg 360deg);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .meals-pie-chart::after {
+      content: '';
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .meals-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .meals-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .meals-legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
     @media (min-width: 768px) {
       .stats-container {
         grid-template-columns: repeat(3, 1fr);
@@ -709,6 +812,45 @@
                   <div class="bar-value">78</div>
                   <div class="bar-fill alt" style="height: 180px;"></div>
                   <div class="bar-label">Mois 4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section Mes petits plats -->
+          <div class="stat-card" style="grid-column: 1 / -1;">
+            <div class="meals-header">
+              <span>Mes petits plats...</span>
+              <span class="meals-arrow">→</span>
+            </div>
+            
+            <div class="meals-carousel">
+              <div class="meals-item">🍎 Fruits</div>
+              <div class="meals-item">🥗 Légumes</div>
+              <div class="meals-item">🥚 Protéines</div>
+              <div class="meals-item">🍞 Féculents</div>
+              <div class="meals-item">🥛 Produits laitiers</div>
+            </div>
+
+            <div class="meals-composition">
+              <div>
+                <div class="meals-pie-chart"></div>
+              </div>
+              <div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 12px;">Composition moyenne</div>
+                <div class="meals-legend">
+                  <div class="meals-legend-item">
+                    <div class="meals-legend-color" style="background: #94d5f5;"></div>
+                    <span>Lipides</span>
+                  </div>
+                  <div class="meals-legend-item">
+                    <div class="meals-legend-color" style="background: #6366f1;"></div>
+                    <span>Glucides</span>
+                  </div>
+                  <div class="meals-legend-item">
+                    <div class="meals-legend-color" style="background: #0ea5e9;"></div>
+                    <span>Protéines</span>
+                  </div>
                 </div>
               </div>
             </div>
