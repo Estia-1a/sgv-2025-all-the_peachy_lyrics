@@ -273,6 +273,232 @@
       color: #374151;
     }
 
+    /* Styles pour la page Dashboard */
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .dashboard-back-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: var(--text);
+    }
+
+    .dashboard-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .dashboard-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .dashboard-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .dashboard-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .dashboard-card-arrow {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .dashboard-objectives {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .dashboard-objective-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .dashboard-objective-checkbox {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .dashboard-circuits {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 0;
+    }
+
+    .dashboard-circuits::-webkit-scrollbar {
+      display: none;
+    }
+
+    .dashboard-circuit-item {
+      flex: 0 0 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .dashboard-runner-avatar {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .dashboard-runner-info {
+      flex: 1;
+    }
+
+    .dashboard-runner-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .dashboard-runner-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .dashboard-runner-level {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .dashboard-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .dashboard-video-placeholder {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-video-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+    }
+
+    .dashboard-video-controls {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .dashboard-video-slider {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .dashboard-video-time {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .dashboard-container {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .dashboard-section-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .dashboard-card {
+        background: #0f172a;
+        border-color: #1f2937;
+      }
+
+      .dashboard-circuit-item,
+      .dashboard-runner-avatar,
+      .dashboard-video-placeholder {
+        background: linear-gradient(135deg, #1f2937, #111827);
+      }
+
+      .dashboard-title {
+        color: #e5e7eb;
+      }
+
+      .dashboard-card-title {
+        color: #e5e7eb;
+      }
+    }
+
     /* Styles pour les graphiques */
     .stats-container {
       display: grid;
@@ -723,6 +949,7 @@
         <div id="menu-panel" class="menu-panel hidden">
           <ul style="list-style:none; padding:0; margin:0;">
             <li style="margin-bottom:8px;"><a href="#" onclick="showAdvice(); toggleMenu(); return false;" style="text-decoration:none; color:var(--text); font-size:14px;">Conseils personnalis?s</a></li>
+            <li style="margin-bottom:8px;"><a href="#" onclick="showDashboard(); toggleMenu(); return false;" style="text-decoration:none; color:var(--text); font-size:14px;">Mes informations</a></li>
             <li><a href="#" style="text-decoration:none; color:var(--muted); font-size:14px;">Autre (vide)</a></li>
           </ul>
         </div>
@@ -858,6 +1085,171 @@
         </div>
       </div>
 
+      <!-- PAGE 2.5 : Dashboard / Mes Informations -->
+      <div id="view-dashboard" class="wrap hidden" style="background:#fff; padding:20px 16px;">
+        <div class="dashboard-header">
+          <button class="dashboard-back-btn" onclick="showHome()" aria-label="Retour">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <h1 class="dashboard-title" style="margin: 0;">Mes informations</h1>
+          <div style="width:24px;"></div>
+        </div>
+
+        <div class="dashboard-container">
+          <!-- Section 1: Ton sport, tes prouesses ! -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <span style="font-size:18px; font-weight:700; color:var(--text);">Ton sport, tes prouesses !</span>
+              <span class="dashboard-card-arrow">→</span>
+            </div>
+            
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div class="dashboard-runner-avatar">😊</div>
+              <div class="dashboard-runner-info">
+                <div class="dashboard-runner-title">F?licitation !</div>
+                <div class="dashboard-runner-subtitle">Tu es le</div>
+                <div class="dashboard-runner-level">7?me</div>
+                <div class="dashboard-runner-subtitle">Plus grand coureur de Chistera !</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Tes informations de coureur -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <span style="font-size:14px; font-weight:700; color:var(--text);">Tes informations de coureur</span>
+              <span class="dashboard-card-arrow">→</span>
+            </div>
+            
+            <div class="dashboard-objectives">
+              <div class="dashboard-objective-item">
+                <input type="checkbox" class="dashboard-objective-checkbox" id="obj5km" />
+                <label for="obj5km" style="margin:0; cursor:pointer;">5km</label>
+              </div>
+              <div class="dashboard-objective-item">
+                <input type="checkbox" class="dashboard-objective-checkbox" id="obj10km" />
+                <label for="obj10km" style="margin:0; cursor:pointer;">10 km</label>
+              </div>
+              <div class="dashboard-objective-item">
+                <input type="checkbox" class="dashboard-objective-checkbox" id="obj15km" />
+                <label for="obj15km" style="margin:0; cursor:pointer;">15 km</label>
+              </div>
+              <div class="dashboard-objective-item">
+                <input type="checkbox" class="dashboard-objective-checkbox" id="obj25km" />
+                <label for="obj25km" style="margin:0; cursor:pointer;">25 km</label>
+              </div>
+              <div class="dashboard-objective-item">
+                <input type="checkbox" class="dashboard-objective-checkbox" id="obj35km" />
+                <label for="obj35km" style="margin:0; cursor:pointer;">35 km</label>
+              </div>
+              <div class="dashboard-objective-item">
+                <input type="checkbox" class="dashboard-objective-checkbox" id="obj45km" />
+                <label for="obj45km" style="margin:0; cursor:pointer;">45 km</label>
+              </div>
+            </div>
+
+            <div style="margin-top:20px;">
+              <div style="font-size:14px; font-weight:700; color:var(--text); margin-bottom:8px;">Mes objectifs de coureur</div>
+              <div class="dashboard-circuits">
+                <div class="dashboard-circuit-item">🏃</div>
+                <div class="dashboard-circuit-item">🏃</div>
+                <div class="dashboard-circuit-item">🏃</div>
+                <div class="dashboard-circuit-item">🏃</div>
+              </div>
+              <div style="font-size:12px; font-weight:700; color:var(--text); margin-top:12px;">Mes circuits</div>
+            </div>
+          </div>
+
+          <!-- Section 3: Poids et alimentation -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <span style="font-size:14px; font-weight:700; color:var(--text);">Poids et alimentation</span>
+              <span class="dashboard-card-arrow">→</span>
+            </div>
+            
+            <div style="text-align:center; margin-bottom:12px;">
+              <div style="font-size:12px; color:var(--muted); margin-bottom:4px;">Poids</div>
+              <div style="font-size:32px; font-weight:800; color:var(--text);">75<span style="font-size:16px; color:var(--muted);">kg</span></div>
+            </div>
+
+            <div style="width:100%; height:100px; background:linear-gradient(135deg, #e5e7eb, #f3f4f6); border-radius:12px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:12px;">
+              Graphique de poids
+            </div>
+          </div>
+
+          <!-- Section 4: Mes rep?s -->
+          <div class="dashboard-card" style="grid-column: 1 / -1;">
+            <div class="dashboard-card-header">
+              <span style="font-size:14px; font-weight:700; color:var(--text);">Mes rep?s</span>
+              <span class="dashboard-card-arrow">→</span>
+            </div>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:center;">
+              <div>
+                <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">Composition moyenne</div>
+                <div style="width:100px; height:100px; background:conic-gradient(#94d5f5 0deg 108deg, #6366f1 108deg 216deg, #0ea5e9 216deg 360deg); border-radius:50%; margin:0 auto; position:relative; display:flex; align-items:center; justify-content:center;">
+                  <div style="width:60px; height:60px; background:#fff; border-radius:50%;"></div>
+                </div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text);">
+                  <div style="width:12px; height:12px; background:#94d5f5; border-radius:3px;"></div>
+                  <span>Lipides</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text);">
+                  <div style="width:12px; height:12px; background:#6366f1; border-radius:3px;"></div>
+                  <span>Glucides</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text);">
+                  <div style="width:12px; height:12px; background:#0ea5e9; border-radius:3px;"></div>
+                  <span>Prot?ines</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: La r?cup?ration -->
+        <div style="margin-top:20px;">
+          <div style="font-size:18px; font-weight:700; color:var(--text); margin-bottom:16px;">La r?cup?ration</div>
+          
+          <div style="display:grid; grid-template-columns:1fr; gap:16px;">
+            <!-- Besoin d'?tirements ? -->
+            <div class="dashboard-card">
+              <div class="dashboard-card-header">
+                <span style="font-size:14px; font-weight:700; color:var(--text);">Besoin d'?tirements ?</span>
+                <span class="dashboard-card-arrow">→</span>
+              </div>
+              <div class="dashboard-video-placeholder">
+                <div style="position:absolute; top:12px; right:12px; font-size:20px;">🎬</div>
+                <div class="dashboard-video-controls">
+                  <div class="dashboard-video-icon">▶</div>
+                  <div class="dashboard-video-slider"></div>
+                  <div class="dashboard-video-time">0:00</div>
+                </div>
+              </div>
+              <div style="font-size:12px; color:var(--muted); margin-top:8px;">N'h?site pas ? venir checker nos tutos !</div>
+            </div>
+
+            <!-- Pourquoi bien s'hydrater ? -->
+            <div class="dashboard-card">
+              <div class="dashboard-card-header">
+                <span style="font-size:14px; font-weight:700; color:var(--text);">Pourquoi bien s'hydrater ?</span>
+              </div>
+              <div class="dashboard-video-placeholder">
+                <div style="position:absolute; top:12px; right:12px; font-size:20px;">🎬</div>
+                <div class="dashboard-video-controls">
+                  <div class="dashboard-video-icon">▶</div>
+                  <div class="dashboard-video-slider"></div>
+                  <div class="dashboard-video-time">0:00</div>
+                </div>
+              </div>
+              <div style="font-size:12px; color:var(--muted); margin-top:8px;">Voici quelques vid?os explicatives pour savoir comment bien r?cup?rer apr?s une activit? physique !</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- PAGE 3 : Conseils Personnalis?s -->
       <div id="view-advice" class="wrap hidden" style="background:#fff;">
         <div style="width:100%; display:flex; justify-content:flex-start;">
@@ -932,8 +1324,16 @@
 
     function showAdvice() {
       document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-dashboard').classList.add('hidden');
       document.getElementById('view-advice').classList.remove('hidden');
       document.body.classList.add('is-home-view'); // Reste en plein ?cran sur PC
+    }
+
+    function showDashboard() {
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-advice').classList.add('hidden');
+      document.getElementById('view-dashboard').classList.remove('hidden');
+      document.body.classList.add('is-home-view');
     }
 
     function handleSubmit(e){
