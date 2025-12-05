@@ -176,10 +176,13 @@
         max-width: 1200px;
         margin: 0 auto 20px;
       }
+        body.is-home-view .home-header { align-items: center; }
+        body.is-home-view .home-title { font-size: 48px; line-height:1; }
+        body.is-home-view .home-subtitle { font-size:14px; }
       body.is-home-view #view-home {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 12px 40px 40px;
       }
       body.is-home-view .menu-panel {
         right: 40px;
@@ -507,27 +510,28 @@
       margin-top: 24px;
     }
 
-    .stat-card {
+      .stat-card {
       position: relative;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 20px;
+      padding: 24px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      display:flex; flex-direction:column; justify-content:flex-start;
     }
 
     .stat-card-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .chart-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 200px;
+      min-height: 220px;
     }
 
     /* Card arrow (top-right) */
@@ -555,6 +559,28 @@
     .line-chart .grid { stroke: rgba(15,23,42,0.06); stroke-width:1; }
     .line-chart .line { fill: none; stroke: rgba(15,23,42,0.12); stroke-width:10; stroke-linecap:round; stroke-linejoin:round; }
     .line-chart .line-foreground { fill: none; stroke: var(--primary); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* Force cards to be light on the home fullscreen view (match wireframe) */
+    body.is-home-view .stat-card,
+    body.is-home-view .dashboard-card,
+    body.is-home-view .stat-card .meals-header,
+    body.is-home-view .dashboard-lower .dashboard-card {
+      background: #fff !important;
+      color: var(--text) !important;
+      border-color: var(--border) !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+    }
+
+    /* ensure small pie & line charts contrast on white cards */
+    body.is-home-view .pie-chart::after { background: #fff; }
+    body.is-home-view .line-chart .line { stroke: rgba(15,23,42,0.08); stroke-width:6; }
+    body.is-home-view .line-chart .line-foreground { stroke: var(--primary); stroke-width:2.5; }
+
+    /* Responsive: stack lower dashboard on small screens */
+    @media (max-width: 767px) {
+      .dashboard-lower { grid-template-columns: 1fr !important; }
+      .dashboard-lower > div { width: 100%; }
+    }
 
     /* Graphique en barres */
     .bar-chart {
@@ -603,8 +629,8 @@
 
     /* Graphique camembert */
     .pie-chart {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       background: conic-gradient(#94d5f5 0deg 216deg, #0ea5e9 216deg 360deg);
       position: relative;
@@ -814,7 +840,8 @@
     @media (min-width: 768px) {
       .stats-container {
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        gap: 28px;
+        align-items: start;
       }
 
       .trend-section {
