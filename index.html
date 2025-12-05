@@ -508,6 +508,7 @@
     }
 
     .stat-card {
+      position: relative;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -528,6 +529,32 @@
       align-items: center;
       min-height: 200px;
     }
+
+    /* Card arrow (top-right) */
+    .card-arrow {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: var(--muted);
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .stat-explanation {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-top: 12px;
+      max-height: 6.4em;
+      overflow: hidden;
+    }
+
+    /* Line chart (SVG) */
+    .line-chart { width: 100%; height: 220px; }
+    .line-chart svg { width: 100%; height: 100%; overflow: visible; }
+    .line-chart .grid { stroke: rgba(15,23,42,0.06); stroke-width:1; }
+    .line-chart .line { fill: none; stroke: rgba(15,23,42,0.12); stroke-width:10; stroke-linecap:round; stroke-linejoin:round; }
+    .line-chart .line-foreground { fill: none; stroke: var(--primary); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
 
     /* Graphique en barres */
     .bar-chart {
@@ -815,6 +842,22 @@
         color: #a3adc2;
       }
     }
+    /* Mobile-specific adjustments to make charts and layout consistent */
+    @media (max-width: 767px) {
+      .title { font-size: 28px; }
+      .home-title { font-size: 22px; }
+      .wrap { padding: 18px 14px 20px; }
+      .stat-card { padding: 14px; }
+      .chart-wrapper { min-height: 120px; }
+      .bar-chart { gap: 10px; height: 140px; }
+      .carousel-item { flex: 0 0 180px; height: 140px; }
+      .bar { gap: 6px; }
+      .bar-fill { width: 22px; }
+      .bar-value { font-size: 11px; }
+      .pie-chart { width: 110px; height: 110px; }
+      .pie-chart::after { width: 70px; height: 70px; }
+      body.is-home-view .home-header { padding: 14px 18px; }
+    }
   </style>
 </head>
 <body>
@@ -956,92 +999,66 @@
 
         <!-- Graphiques et statistiques -->
         <div class="stats-container">
-          <!-- Carte 1: Votre Tendance -->
+          <!-- Carte 1: Sommeil (barres) -->
           <div class="stat-card">
-            <h3 class="stat-card-title">Votre tendance</h3>
-            <div class="trend-section">
-              <div class="trend-item">
-                <div class="trend-label">Poids</div>
-                <div style="font-size:24px; font-weight:800; color:var(--text);">75<span class="trend-unit">kg</span></div>
-              </div>
-              <div class="trend-item">
-                <div class="trend-label">IMC</div>
-                <div style="font-size:24px; font-weight:800; color:var(--text);">24.9<span class="trend-unit"></span></div>
-              </div>
-            </div>
+            <h3 class="stat-card-title">Sommeil <span class="card-arrow" title="Voir plus">→</span></h3>
             <div class="chart-wrapper">
-              <div class="bar-chart">
+              <div class="bar-chart" data-type="sleep">
                 <div class="bar">
-                  <div class="bar-value">72</div>
-                  <div class="bar-fill" style="height: 120px;"></div>
-                  <div class="bar-label">Sem 1</div>
+                  <div class="bar-value">6</div>
+                  <div class="bar-fill" style="height: 0px;"></div>
+                  <div class="bar-label">J-3</div>
                 </div>
                 <div class="bar">
-                  <div class="bar-value">74</div>
-                  <div class="bar-fill alt" style="height: 140px;"></div>
-                  <div class="bar-label">Sem 2</div>
+                  <div class="bar-value">7</div>
+                  <div class="bar-fill alt" style="height: 0px;"></div>
+                  <div class="bar-label">J-2</div>
                 </div>
                 <div class="bar">
-                  <div class="bar-value">75</div>
-                  <div class="bar-fill" style="height: 150px;"></div>
-                  <div class="bar-label">Sem 3</div>
+                  <div class="bar-value">7.5</div>
+                  <div class="bar-fill" style="height: 0px;"></div>
+                  <div class="bar-label">J-1</div>
                 </div>
                 <div class="bar">
-                  <div class="bar-value">75</div>
-                  <div class="bar-fill alt" style="height: 150px;"></div>
-                  <div class="bar-label">Sem 4</div>
+                  <div class="bar-value">8</div>
+                  <div class="bar-fill alt" style="height: 0px;"></div>
+                  <div class="bar-label">Aujourd'hui</div>
                 </div>
               </div>
             </div>
+            <div class="stat-explanation">Durée moyenne de sommeil sur les derniers jours. Un sommeil réparateur favorise la récupération et les performances.</div>
           </div>
 
-          <!-- Carte 2: Composition Corporelle (Camembert) -->
+          <!-- Carte 2: Composition corporelle (camembert + légende à droite) -->
           <div class="stat-card">
-            <h3 class="stat-card-title">Composition corporelle</h3>
-            <div class="chart-wrapper">
-              <div style="flex-direction: column; display: flex; align-items: center; width: 100%;">
-                <div class="pie-chart"></div>
-                <div class="pie-legend">
-                  <div class="legend-item">
-                    <div class="legend-color" style="background: #94d5f5;"></div>
-                    <span>Sommeil r?parateur</span>
-                  </div>
-                  <div class="legend-item">
-                    <div class="legend-color" style="background: #0ea5e9;"></div>
-                    <span>Sommeil</span>
-                  </div>
-                </div>
+            <h3 class="stat-card-title">Composition corporelle <span class="card-arrow" title="Voir plus">→</span></h3>
+            <div class="chart-wrapper" style="align-items:stretch;">
+              <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+                <div class="pie-chart" aria-hidden="true"></div>
+              </div>
+              <div style="flex:1; display:flex; align-items:center;">
+                <ul class="composition-list" style="margin:0; padding:0; width:100%;">
+                  <li class="composition-item"><div class="composition-label"><span class="color-dot" style="background:#94d5f5"></span> Graisse</div><div class="composition-value">22%</div></li>
+                  <li class="composition-item"><div class="composition-label"><span class="color-dot" style="background:#0ea5e9"></span> Muscles</div><div class="composition-value">38%</div></li>
+                  <li class="composition-item"><div class="composition-label"><span class="color-dot" style="background:#6366f1"></span> Autres</div><div class="composition-value">40%</div></li>
+                </ul>
               </div>
             </div>
+            <div class="stat-explanation">Répartition simplifiée entre graisse, muscles et autres composantes corporelles (eau, os...). Utilisez ces chiffres comme indication générale.</div>
           </div>
 
-          <!-- Carte 3: Progression G?n?rale -->
+          <!-- Carte 3: Le stress (courbe) -->
           <div class="stat-card">
-            <h3 class="stat-card-title">Progression g?n?rale</h3>
+            <h3 class="stat-card-title">Le stress <span class="card-arrow" title="Voir plus">→</span></h3>
             <div class="chart-wrapper">
-              <div class="bar-chart">
-                <div class="bar">
-                  <div class="bar-value">65</div>
-                  <div class="bar-fill" style="height: 100px;"></div>
-                  <div class="bar-label">Mois 1</div>
-                </div>
-                <div class="bar">
-                  <div class="bar-value">70</div>
-                  <div class="bar-fill alt" style="height: 130px;"></div>
-                  <div class="bar-label">Mois 2</div>
-                </div>
-                <div class="bar">
-                  <div class="bar-value">75</div>
-                  <div class="bar-fill" style="height: 160px;"></div>
-                  <div class="bar-label">Mois 3</div>
-                </div>
-                <div class="bar">
-                  <div class="bar-value">78</div>
-                  <div class="bar-fill alt" style="height: 180px;"></div>
-                  <div class="bar-label">Mois 4</div>
-                </div>
+              <div class="line-chart" data-points="12,18,15,22,28,24,30">
+                <svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline class="line" points=""/>
+                  <polyline class="line-foreground" points=""/>
+                </svg>
               </div>
             </div>
+            <div class="stat-explanation">Évolution du niveau de stress sur la période récente. Des pics peuvent indiquer des facteurs ponctuels à surveiller.</div>
           </div>
 
           <!-- Section Mes petits plats -->
@@ -1357,6 +1374,60 @@
       showHome();
       return false;
     }
+    
+    /* Charts: make bar heights responsive from values and adapt on resize */
+    function renderCharts(){
+      document.querySelectorAll('.bar-chart').forEach(chart => {
+        const bars = Array.from(chart.querySelectorAll('.bar'));
+        if (!bars.length) return;
+        const values = bars.map(b => {
+          const vEl = b.querySelector('.bar-value');
+          const n = vEl ? parseFloat(vEl.textContent) : 0;
+          return isNaN(n) ? 0 : n;
+        });
+        const max = Math.max(...values, 1);
+        // compute available height from chart computed style
+        const chartHeight = Math.max(100, chart.clientHeight || 160);
+        bars.forEach((b, i) => {
+          const fill = b.querySelector('.bar-fill');
+          if (!fill) return;
+          const pct = values[i] / max;
+          // leave some headroom for labels
+          const h = Math.round(pct * (chartHeight - 24));
+          fill.style.height = h + 'px';
+        });
+      });
+    }
+
+      /* Render simple line charts from data-points attribute */
+      function renderLineCharts(){
+        document.querySelectorAll('.line-chart').forEach(node => {
+          const svg = node.querySelector('svg');
+          if (!svg) return;
+          const pointsAttr = node.getAttribute('data-points') || '';
+          const values = pointsAttr.split(',').map(s => parseFloat(s)).filter(n => !isNaN(n));
+          if (!values.length) return;
+          const w = svg.viewBox.baseVal.width || 100;
+          const h = svg.viewBox.baseVal.height || 40;
+          const max = Math.max(...values);
+          const min = Math.min(...values);
+          const range = Math.max(1, max - min);
+          const stepX = w / Math.max(1, values.length - 1);
+          const points = values.map((v,i) => {
+            const x = (i * stepX).toFixed(2);
+            // invert y (SVG origin top-left)
+            const y = (h - ((v - min) / range) * (h - 6) - 3).toFixed(2);
+            return x + ',' + y;
+          }).join(' ');
+          const bgLine = svg.querySelector('.line');
+          const fgLine = svg.querySelector('.line-foreground');
+          if (bgLine) bgLine.setAttribute('points', points);
+          if (fgLine) fgLine.setAttribute('points', points);
+        });
+      }
+
+    document.addEventListener('DOMContentLoaded', () => { renderCharts(); renderLineCharts(); });
+    window.addEventListener('resize', () => { renderCharts(); renderLineCharts(); });
   </script>
     <!-- ========================================================================== -->
     <!-- PAGE 3 : Tableau de Bord (Dashboard) -->
