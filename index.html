@@ -571,6 +571,22 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
     }
 
+    /* Force text colors to be dark on PC view (fix for dark mode leak) */
+    body.is-home-view .stat-card-title,
+    body.is-home-view .composition-label,
+    body.is-home-view .bar-value,
+    body.is-home-view .legend-item,
+    body.is-home-view .trend-value {
+      color: var(--text) !important;
+    }
+
+    body.is-home-view .stat-explanation,
+    body.is-home-view .bar-label,
+    body.is-home-view .trend-label,
+    body.is-home-view .trend-unit {
+      color: #4b5563 !important; /* Darker gray */
+    }
+
     /* ensure small pie & line charts contrast on white cards */
     body.is-home-view .pie-chart::after { background: #fff; }
     body.is-home-view .line-chart .line { stroke: rgba(15,23,42,0.08); stroke-width:6; }
