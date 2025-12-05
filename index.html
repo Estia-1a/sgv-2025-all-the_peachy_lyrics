@@ -648,6 +648,17 @@
       background: #fff;
     }
 
+    /* Reusable utility classes for dashboard lower area */
+    .dashboard-avatar-large { width:96px; height:96px; font-size:40px; border-radius:12px; }
+    .profile-row { display:flex; gap:12px; align-items:center; }
+    .profile-title { font-size:18px; font-weight:700; color:var(--text); }
+    .profile-rank { font-size:24px; font-weight:800; color:var(--text); }
+    .profile-sub { font-size:12px; color:var(--muted); }
+    .card-hr { border:none; border-top:1px solid var(--border); margin:12px 0; }
+    .mini-line { width:120px; height:60px; }
+    .meals-pie-small { width:72px; height:72px; }
+    .video-placeholder-small { flex:1; background:linear-gradient(135deg,#e5e7eb,#f3f4f6); border-radius:8px; border:1px solid var(--border); }
+
     .pie-legend {
       display: flex;
       gap: 16px;
@@ -1131,14 +1142,14 @@
           <div class="dashboard-lower" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-top:18px; grid-column: 1 / -1;">
             <!-- Left column: profile / objectives -->
             <div class="dashboard-card">
-              <div style="display:flex; gap:12px; align-items:center;">
-                <div class="dashboard-runner-avatar" style="width:96px; height:96px; font-size:40px; border-radius:12px;">😊</div>
-                <div style="flex:1;">
-                  <div style="font-size:18px; font-weight:700; color:var(--text);">Félicitation !</div>
-                  <div style="font-size:24px; font-weight:800; color:var(--text);">7ème</div>
-                  <div style="font-size:12px; color:var(--muted);">Plus grand coureur de Chistera !</div>
+                <div class="profile-row">
+                  <div class="dashboard-runner-avatar dashboard-avatar-large">😊</div>
+                  <div style="flex:1;">
+                    <div class="profile-title">Félicitation !</div>
+                    <div class="profile-rank">7ème</div>
+                    <div class="profile-sub">Plus grand coureur de Chistera !</div>
+                  </div>
                 </div>
-              </div>
               <hr style="border:none; border-top:1px solid var(--border); margin:12px 0;" />
               <div style="display:flex; gap:12px;">
                 <div style="flex:1;">
@@ -1163,12 +1174,12 @@
 
             <!-- Middle column: Weight + small line chart -->
             <div class="dashboard-card">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="profile-row" style="justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <div>
                   <div style="font-size:12px; color:var(--muted);">Poids</div>
                   <div style="font-size:32px; font-weight:800; color:var(--text);">75 <span style="font-size:14px; color:var(--muted);">kg</span></div>
                 </div>
-                <div style="width:120px; height:60px;">
+                <div class="mini-line">
                   <div class="line-chart" data-points="60,65,70,72,75">
                     <svg viewBox="0 0 100 40" preserveAspectRatio="none"><polyline class="line" points=""/><polyline class="line-foreground" points=""/></svg>
                   </div>
@@ -1180,7 +1191,7 @@
                   <div style="font-size:14px; font-weight:700; color:var(--text);">Mes repas</div>
                   <div style="font-size:12px; color:var(--muted);">Composition moyenne</div>
                 </div>
-                <div style="width:72px; height:72px;">
+                <div class="meals-pie-small">
                   <div class="pie-chart" style="width:72px; height:72px;"></div>
                 </div>
               </div>
@@ -1193,7 +1204,7 @@
                   <div style="font-size:14px; font-weight:700; color:var(--text);">Besoin d'étirements ?</div>
                   <div style="color:var(--muted);">→</div>
                 </div>
-                <div style="flex:1; background:linear-gradient(135deg,#e5e7eb,#f3f4f6); border-radius:8px; border:1px solid var(--border);"></div>
+                <div class="video-placeholder-small"></div>
                 <div style="font-size:12px; color:var(--muted);">N'hésite pas à venir checker nos tutos !</div>
               </div>
 
@@ -1202,7 +1213,7 @@
                   <div style="font-size:14px; font-weight:700; color:var(--text);">Pourquoi bien s'hydrater ?</div>
                   <div style="color:var(--muted);">→</div>
                 </div>
-                <div style="flex:1; background:linear-gradient(135deg,#e5e7eb,#f3f4f6); border-radius:8px; border:1px solid var(--border);"></div>
+                <div class="video-placeholder-small"></div>
                 <div style="font-size:12px; color:var(--muted);">Voici quelques vidéos explicatives pour savoir comment bien récupérer après une activité physique !</div>
               </div>
             </div>
@@ -1445,6 +1456,8 @@
       document.getElementById('view-advice').classList.add('hidden');
       document.getElementById('view-home').classList.remove('hidden');
       document.body.classList.add('is-home-view'); // Active le mode plein ?cran sur PC
+      // Re-render charts after the view becomes visible
+      setTimeout(() => { renderCharts(); renderLineCharts(); }, 60);
     }
 
     function showAdvice() {
@@ -1452,6 +1465,7 @@
       document.getElementById('view-dashboard').classList.add('hidden');
       document.getElementById('view-advice').classList.remove('hidden');
       document.body.classList.add('is-home-view'); // Reste en plein ?cran sur PC
+      setTimeout(() => { renderCharts(); renderLineCharts(); }, 60);
     }
 
     function showDashboard() {
@@ -1459,6 +1473,7 @@
       document.getElementById('view-advice').classList.add('hidden');
       document.getElementById('view-dashboard').classList.remove('hidden');
       document.body.classList.add('is-home-view');
+      setTimeout(() => { renderCharts(); renderLineCharts(); }, 60);
     }
 
     function handleSubmit(e){
@@ -1494,14 +1509,18 @@
           return isNaN(n) ? 0 : n;
         });
         const max = Math.max(...values, 1);
-        // compute available height from chart computed style
-        const chartHeight = Math.max(100, chart.clientHeight || 160);
+        // compute available height robustly
+        let chartHeight = chart.clientHeight || chart.getBoundingClientRect().height || parseFloat(getComputedStyle(chart).height) || 160;
+        // if chart is inside a container with no height yet, try measuring inner available space
+        if (!chartHeight || chartHeight < 40) {
+          chartHeight = 160;
+        }
         bars.forEach((b, i) => {
           const fill = b.querySelector('.bar-fill');
           if (!fill) return;
           const pct = values[i] / max;
-          // leave some headroom for labels
-          const h = Math.round(pct * (chartHeight - 24));
+          // reserve space for labels and ensure min height
+          const h = Math.max(6, Math.round(pct * (chartHeight - 36)));
           fill.style.height = h + 'px';
         });
       });
