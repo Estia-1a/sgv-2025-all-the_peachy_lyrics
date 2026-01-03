@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chistera  Connexion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/mobile.css"> 
+  <link rel="stylesheet" href="styles/mobile.css">
+   
   <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)"> 
 </head>
 <body>
@@ -32,7 +33,7 @@
           <p class="subtitle">Ongi etorri sur Chistera, votre équilibre, notre priorité.</p>
         </div>
         <div id="login-view">
-          <form action="#" method="post" novalidate onsubmit="return handleSubmit(event)">
+          <form onsubmit="return handleSubmit(event)">
             <div class="field">
               <label for="id">Identifiant</label>
               <input id="id" name="identifiant" class="input" type="text" placeholder="Identifiant" required autocomplete="username" />
@@ -52,12 +53,12 @@
             <button class="btn" type="submit">Valider</button>
           </form>
           <div class="switch-auth">
-            Nouveau sur la plateforme ? <a href="#" onclick="toggleAuth(event)">Créer un compte !</a>
+            Nouveau sur la plateforme ? <button type="button" onclick="toggleAuth(event)" style="background:none; border:none; color:#fff; text-decoration:underline; font-weight:600; cursor:pointer;">Créer un compte !</button>
           </div>
         </div>
 
         <div id="register-view" class="hidden">
-          <form action="#" method="post" novalidate onsubmit="return handleRegister(event)">
+          <form onsubmit="return handleRegister(event)">
             <div class="field">
               <label for="reg-id">Identifiant</label>
               <input id="reg-id" name="identifiant" class="input" type="text" placeholder="Choisissez un identifiant" required autocomplete="username" />
@@ -90,7 +91,7 @@
             <button class="btn" type="submit">S'inscrire</button>
           </form>
           <div class="switch-auth">
-            Déjà un compte ? <a href="#" onclick="toggleAuth(event)">Se connecter</a>
+            Déjà un compte ? <button type="button" onclick="toggleAuth(event)" style="background:none; border:none; color:#fff; text-decoration:underline; font-weight:600; cursor:pointer;">Se connecter</button>
           </div>
         </div>
         <p class="tagline">Prenez soin de vous, simplement, naturellement.</p>
@@ -696,12 +697,12 @@
     <!-- ========================================================================== -->
 
     <!-- ========================================================================== -->
-    <!-- PAGE CONSEILS PERSONNALIS?S -->
+    <!-- PAGE CONSEILS PERSONNALISÉS -->
     <!-- ========================================================================== -->
-    <div id="conseilsPage" style="display:none; width:100%; max-width:900px; margin:0 auto; padding:20px;">
-      <div style="background:white; border-radius:16px; padding:30px; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
-        <h1 style="font-size:36px; font-weight:800; margin:0 0 10px 0; color:var(--primary); text-align:center;">Conseils Personnalisés</h1>
-        <p style="font-size:14px; color:var(--muted); text-align:center; margin-bottom:30px;">Découvrez nos recommandations adaptées pour votre bien-être</p>
+    <div id="conseilsPage" class="conseilsPage">
+      <div class="conseils-wrapper">
+        <h1 class="conseils-title">Conseils Personnalisés</h1>
+        <p class="conseils-subtitle">Découvrez nos recommandations adaptées pour votre bien-être</p>
         
         <!-- Menu déroulant -->
         <div style="margin-bottom:30px ;">
@@ -903,10 +904,6 @@
     </script>
 </body>
 </html>
-
-
-
-
 
 
 
